@@ -1,2 +1,3 @@
-0 20 1-31/7 * * soal3b.sh 
-0 20 2-31/4 * * soal3b.sh
+# /home/jacktheripper/SoalShiftSISOP2021_modul01_C04/ Local directory user dimana terdapat file yang akan dieksekusi (dapat disesuaikan pada setiap user).
+0 20 1-31/7 * * /home/jacktheripper/SoalShiftSISOP2021_modul01_C04/soal3b.sh
+0 20 2-31/4 * * /home/jacktheripper/SoalShiftSISOP2021_modul01_C04/soal3b.sh
