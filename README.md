@@ -124,15 +124,15 @@ Profit Percentage = (Profit / Cost Price) * 100
 di mana Cost Price dapat didapatkan dari pengurangan kolom Sales dengan Profit. Kemudian menyimpannya ke dalam variabel `profit_percentage`
 
 ### #B
-Mencari data dengan `city` bernilai `Albuquerque` dan memeiliki `orderdate` bernilai `17`. Data tersebut disimpan ke dalam list `albuquerque17` dengan cara menandai index `customer_name` nya dengan nilai 1. 
+Mencari data dengan `city` bernilai `Albuquerque` dan memeiliki `orderdate` bernilai `17`. Data tersebut disimpan ke dalam list `albuquerque17` dengan key `customer_name` diberi 1. 
 
 ### #C
 Mengelompokkan dan menghitung setiap customer segment yang ada di dalam data, kemudian mencari segmen dengan jumlah transaksi paling sedikit.
-Untuk setiap data, nilai dari variabel `segment` dengan index `customer_segment` akan bertambah sesuai dengan nilai kolom `customer_segment` pada baris tersebut. Seperti kode di bawah ini 
+Untuk setiap data, nilai dari variabel `segment` dengan key `customer_segment` akan bertambah sesuai dengan nilai kolom `customer_segment` pada baris tersebut. Seperti kode di bawah ini 
 ```bash
 segment[customer_segment]++;
 ```
-Kemudian untuk setiap index akan dibandingkan untuk mengetahui mana yang jumlahnya paling sedikit dari seluruh segmen
+Kemudian untuk setiap key akan dibandingkan untuk mengetahui mana yang jumlahnya paling sedikit dari seluruh segmen
 ```bash
 for(key in segment){
         if(segment[key] <= lowest_segment_totaltrx){
@@ -144,11 +144,11 @@ for(key in segment){
 
 ### #D
 Menghitung total profit dari setiap region kemudian mencari region dengan profit paling sedikit dan total keuntungan wilayah tersebut.
-Untuk setiap data, nilai dari variabel `region_proofit` dengan index `region` akan bertambah sesuai dengan nilai kolom `region` pada baris tersebut. Seperti kode di bawah ini 
+Untuk setiap data, nilai dari variabel `region_proofit` dengan key `region` akan bertambah sesuai dengan nilai kolom `region` pada baris tersebut. Seperti kode di bawah ini 
 ```bash
 region_proofit[region]+=profit;
 ```
-Kemudian untuk setiap index akan dibandingkan untuk mengetahui mana yang jumlahnya paling sedikit dari seluruh region
+Kemudian untuk setiap key akan dibandingkan untuk mengetahui mana yang jumlahnya paling sedikit dari seluruh region
 
 ### #E
 Hasil dari soal #A, #B, #C dan #D kemudian akan dicetak dalam file "hasil.txt" sesuai dengan format yang telah ditentukan.
