@@ -13,7 +13,7 @@ else
     echo "[!] Directory $current_date already exist"
 fi
 
-download_nekopoi(){
+download_neko(){
     neko_host="https://loremflickr.com"
     neko_endpoint=`curl -s -i "https://loremflickr.com/320/240/kitten" | grep "location" | awk -F ': ' '{print $2}' | tr -d '\r'`
     neko_to_download="${neko_host}${neko_endpoint}"
@@ -46,5 +46,5 @@ download_nekopoi(){
 
 for ((num=1; num<=23; num=num+1))
 do
-    download_nekopoi
+    download_neko
 done
