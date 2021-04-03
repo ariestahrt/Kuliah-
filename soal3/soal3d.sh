@@ -1,6 +1,7 @@
 #!/bin/bash
-# Unzip : password=`date +'%m%d%Y'` && unzip -P $password Koleksi.zip && rm Koleksi.zip
 
+PATH_TO="/home/ariestaheart/Sisop/soal-shift-sisop-modul-1-C04-2021/soal3"
+cd PATH_TO
 password=`date +'%m%d%Y'`
 
 for d in */ ; do

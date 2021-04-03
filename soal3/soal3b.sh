@@ -1,17 +1,11 @@
 #!/bin/bash
 
+PATH_TO="/home/ariestaheart/Sisop/soal-shift-sisop-modul-1-C04-2021/soal3"
 current_date=`date +'%d-%m-%Y'`
 
 echo "[!] Current date : $current_date"
 
-if [[ ! -d "$current_date" ]]; then
-    # File not exist
-    echo "[!] Making directory $current_date"
-    mkdir "$current_date"
-else
-    # File arleady exist
-    echo "[!] Directory $current_date already exist"
-fi
+mkdir "${PATH_TO}/$current_date"
 
 download_neko(){
     neko_host="https://loremflickr.com"
@@ -20,16 +14,16 @@ download_neko(){
     neko_filename=`echo "$neko_endpoint" | awk -F '/' '{print $4}'`
 
     echo "Download : $neko_to_download"
-    wget $neko_to_download -P "$current_date"
+    wget $neko_to_download -P "${PATH_TO}/$current_date"
 
-    echo "Download : $neko_to_download">>"${current_date}/Foto.log"
+    echo "Download : $neko_to_download">>"${PATH_TO}/${current_date}/Foto.log"
 
-    if [[ $(cat "${current_date}/Foto.log" | grep -c "${neko_to_download}") -gt 1 ]]; then
+    if [[ $(cat "${PATH_TO}/${current_date}/Foto.log" | grep -c "${neko_to_download}") -gt 1 ]]; then
         # Kalau kucingnya udah kedownload, maka hapus lagi kucingnya
-        rm "$current_date/$neko_filename"
+        rm "${PATH_TO}/$current_date/$neko_filename"
     else
         # Kalau kucingnya belum kedownload, maka tinggal ganti nama aja
-        neko_number=`ls $current_date | grep -c "Koleksi"`
+        neko_number=`ls "${PATH_TO}/$current_date" | grep -c "Koleksi"`
         neko_number=`echo "$neko_number + 1" | tr -d $'\r' | bc -l`
 
         if [ 1 -eq "$(echo "${neko_number} < 10" | bc)" ]
@@ -40,10 +34,11 @@ download_neko(){
         neko_save_file_name="Koleksi_${neko_number}.jpg"
 
         # echo $neko_save_file_name
-        mv "$current_date/$neko_filename" "$current_date/$neko_save_file_name"
+        mv "${PATH_TO}/$current_date/$neko_filename" "${PATH_TO}/$current_date/$neko_save_file_name"
     fi
 }
 
+>"${PATH_TO}/${current_date}/Foto.log"
 for ((num=1; num<=23; num=num+1))
 do
     download_neko

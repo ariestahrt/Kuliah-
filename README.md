@@ -4,13 +4,20 @@
 - Muhammad Arif Faizin	05111940000060
 - Ahmad Lamaul Farid	05111940000134
 
+# Soal
+Link soal : [Soal Shift 1](https://drive.google.com/file/d/1__Zdvng6ciRyzo43XTlxpSwXHfwk9hrS/view?usp=sharing)
 
 ## Soal 1
+---
+### # Narasi Soal
+Ryujin baru saja diterima sebagai IT support di perusahaan Bukapedia. Dia diberikan tugas untuk membuat laporan harian untuk aplikasi internal perusahaan, ticky. Terdapat 2 laporan yang harus dia buat, yaitu laporan daftar peringkat pesan error terbanyak yang dibuat oleh ticky dan laporan penggunaan user pada aplikasi ticky. Untuk membuat laporan tersebut, Ryujin harus melakukan beberapa hal berikut
 
-### #A
+### # A
+Mengumpulkan informasi dari log aplikasi yang terdapat pada file syslog.log. Informasi yang diperlukan antara lain: jenis log (ERROR/INFO), pesan log, dan username pada setiap baris lognya. Karena Ryujin merasa kesulitan jika harus memeriksa satu per satu baris secara manual, dia menggunakan regex untuk mempermudah pekerjaannya. Bantulah Ryujin membuat regex tersebut.
+
 Statemen problem A disini adalah memberitahu praktikan bahwa solusi dari soal ini adalah menggunakan regex
 
-### #B
+### # B
 Ryujin harus menampilkan semua pesan error yang muncul beserta jumlah kemunculannya.
 Untuk memperoleh hal tersebut kami menggunakan 
 
@@ -35,7 +42,7 @@ do
 done
 ```
 
-### #C
+### # C
 Ryujin juga harus dapat menampilkan jumlah kemunculan log ERROR dan INFO untuk setiap user-nya.
 
 Langkahnya mirip dengan problem B, yaitu mencari daftar user dengan pattern `'\(\K.*(?=\))'` yang berarti *match* berada diawali dengan `'('` dan diakhiri dengan `')'` dan kita hapus juga duplikatnya, dengan kode program:
@@ -52,7 +59,7 @@ do
 done
 ```
 
-### #D
+### # D
 Semua informasi yang didapatkan pada poin b dituliskan ke dalam file error_message.csv dengan header Error,Count yang kemudian diikuti oleh daftar pesan error dan jumlah kemunculannya diurutkan berdasarkan jumlah kemunculan pesan error dari yang terbanyak.
 
 Pertama-tama kita siapkan dulu file berisikan header "Error,Count" error_message.csv dengan:
@@ -75,7 +82,7 @@ do
 done | sort -rnk 2 -t','>>error_message.csv
 ```
 
-### #E
+### # E
 Semua informasi yang didapatkan pada poin c dituliskan ke dalam file user_statistic.csv dengan header Username,INFO,ERROR diurutkan berdasarkan username secara ascending.
 
 Pertama-tama kita siapkan dulu file berisikan header "Username,INFO,ERROR" user_statistic.csv dengan:
@@ -91,7 +98,8 @@ do
     echo $line,$total_error,$total_info
 done >> user_statistic.csv
 ```
-### #Implementasi Lengkap
+### # Implementasi Lengkap
+Source code : [soal3a.sh](https://github.com/ariestahrt/soal-shift-sisop-modul-1-C04-2021/blob/main/soal1/soal1.sh)
 ```bash
 #!/bin/bash
 IFS=$'\n'
@@ -115,18 +123,29 @@ do
 done >> user_statistic.csv
 ```
 
+### # Hasil
+Isi file `error_message.csv` dan `user_statistic.csv`
+![Isi file error_message.csv dan user_statistic.csv](assets/img/soal1_result.png)
+
 ## Soal 2
-### #A
+---
+### # Narasi Soal
+Steven dan Manis mendirikan sebuah startup bernama “TokoShiSop”. Sedangkan kamu dan Clemong adalah karyawan pertama dari TokoShiSop. Setelah tiga tahun bekerja, Clemong diangkat menjadi manajer penjualan TokoShiSop, sedangkan kamu menjadi kepala gudang yang mengatur keluar masuknya barang.
+
+Tiap tahunnya, TokoShiSop mengadakan Rapat Kerja yang membahas bagaimana hasil penjualan dan strategi kedepannya yang akan diterapkan. Kamu sudah sangat menyiapkan sangat matang untuk raker tahun ini. Tetapi tiba-tiba, Steven, Manis, dan Clemong meminta kamu untuk mencari beberapa kesimpulan dari data penjualan “`Laporan-TokoShiSop.tsv`”.
+
+
+### # A
 Mencari Row ID dan profit percentage terbesar dari data, dengan rumus 
 ```
 Profit Percentage = (Profit / Cost Price) * 100
 ```
 di mana Cost Price dapat didapatkan dari pengurangan kolom Sales dengan Profit. Kemudian menyimpannya ke dalam variabel `profit_percentage`
 
-### #B
+### # B
 Mencari data dengan `city` bernilai `Albuquerque` dan memeiliki `orderdate` bernilai `17`. Data tersebut disimpan ke dalam list `albuquerque17` dengan key `customer_name` diberi 1. 
 
-### #C
+### # C
 Mengelompokkan dan menghitung setiap customer segment yang ada di dalam data, kemudian mencari segmen dengan jumlah transaksi paling sedikit.
 Untuk setiap data, nilai dari variabel `segment` dengan key `customer_segment` akan bertambah sesuai dengan nilai kolom `customer_segment` pada baris tersebut. Seperti kode di bawah ini 
 ```bash
@@ -142,7 +161,7 @@ for(key in segment){
     }
 ```
 
-### #D
+### # D
 Menghitung total profit dari setiap region kemudian mencari region dengan profit paling sedikit dan total keuntungan wilayah tersebut.
 Untuk setiap data, nilai dari variabel `region_proofit` dengan key `region` akan bertambah sesuai dengan nilai kolom `region` pada baris tersebut. Seperti kode di bawah ini 
 ```bash
@@ -150,12 +169,26 @@ region_proofit[region]+=profit;
 ```
 Kemudian untuk setiap key akan dibandingkan untuk mengetahui mana yang jumlahnya paling sedikit dari seluruh region
 
-### #E
+### # E
 Hasil dari soal #A, #B, #C dan #D kemudian akan dicetak dalam file "hasil.txt" sesuai dengan format yang telah ditentukan.
+
+### # Hasil
+Isi file `hasil.txt`
+![Isi hasil.txt](assets/img/soal2_result.png)
+
 
 ## Soal 3
 ---
-### #A
+### # Narasi Soal
+Kuuhaku adalah orang yang sangat suka mengoleksi foto-foto digital, namun Kuuhaku juga merupakan seorang yang pemalas sehingga ia tidak ingin repot-repot mencari foto, selain itu ia juga seorang pemalu, sehingga ia tidak ingin ada orang yang melihat koleksinya tersebut, sayangnya ia memiliki teman bernama Steven yang memiliki rasa kepo yang luar biasa. Kuuhaku pun memiliki ide agar Steven tidak bisa melihat koleksinya, serta untuk mempermudah hidupnya, yaitu dengan meminta bantuan kalian. Idenya adalah 
+
+### # A
+Narasi :
+
+Membuat script untuk mengunduh 23 gambar dari "https://loremflickr.com/320/240/kitten" serta menyimpan log-nya ke file "Foto.log". Karena gambar yang diunduh acak, ada kemungkinan gambar yang sama terunduh lebih dari sekali, oleh karena itu kalian harus menghapus gambar yang sama (tidak perlu mengunduh gambar lagi untuk menggantinya). Kemudian menyimpan gambar-gambar tersebut dengan nama "Koleksi_XX" dengan nomor yang berurutan tanpa ada nomor yang hilang (contoh : Koleksi_01, Koleksi_02, ...)
+
+Solusi :
+
 Untuk mendownload dari "https://loremflickr.com/320/240/kitten" karena gambar yang kita download bukan langsung pada link tersebut atau dengan kata lain terjadi pengalihan/redirect ke alamat foto kucing tersebut sehingga kita memerlukan bantuan command `curl`. Untuk melihat kemana kita akan dialihkan kita perlu mengetahui response header dari http request ke "https://loremflickr.com/320/240/kitten" untuk itu kita perlu melakukan `curl -s -i "https://loremflickr.com/320/240/kitten"` dengan parameter `-s` artinya berjalan dalam silent mode (tanpa mengeluarkan statistik downloadnya) dan `-i` untuk menampilkan response headernya. Dengan contoh response header sebagai berikut:
 ```
 HTTP/2 302
@@ -254,52 +287,46 @@ do
     download_neko
 done
 ```
+### # Hasil #A
+Hasil download gambar
+![Hasil Soal3a](assets/img/soal3a_result.png)
 
-### #B
+Isi Foto.log
+![Hasil Soal3a](assets/img/soal3a_foto_log.png)
+
+### # B
 Menjalankan script tersebut sehari sekali pada jam 8 malam untuk tanggal-tanggal tertentu setiap bulan, yaitu dari tanggal 1 tujuh hari sekali (1,8,...), serta dari tanggal 2 empat hari sekali(2,6,...). Supaya lebih rapi, gambar yang telah diunduh beserta log-nya, dipindahkan ke folder dengan nama tanggal unduhnya dengan format "DD-MM-YYYY" (contoh : "13-03-2023")
 
 Kami hanya memodifikasi dari script problem #A dengan menambahkan beberapa hal yaitu:
 
+- Membuat variabel PATH_TO untuk mengatasi crontab supaya berjalan sesuai dengan directory
+    ```bash
+    PATH_TO="/home/ariestaheart/Sisop/soal-shift-sisop-modul-1-C04-2021/soal3"
+    ```
 - Membuat folder dengan nama tanggal hari ini (DD-MM-YYYY)
     ```bash
     current_date=`date +'%d-%m-%Y'`
-
-    echo "[!] Current date : $current_date"
-
-    if [[ ! -d "$current_date" ]]; then
-        # File not exist
-        echo "[!] Making directory $current_date"
-        mkdir "$current_date"
-    else
-        # File arleady exist
-        echo "[!] Directory $current_date already exist"
-    fi
+    mkdir "${PATH_TO}/$current_date"
     ```
     Penjelasan sudah ada pada comment
 
 - Memodifikasi perintah wget untuk menyimpan file pada tanggal hari ini dan beberapa string yang menggunakan path tersebut juga dimodifikasi
     ```bash
-    wget $neko_to_download -P "$current_date"
+    wget $neko_to_download -P "${PATH_TO}/$current_date"
     ```
     Opsi -P disini adalah '-P,  --directory-prefix=PREFIX   save files to PREFIX/.' untuk menyimpan file ke direktori yang ditentukan
 
 Sehingga implementasi lengkap dapat dilihat sebagai berikut:
-### #Implementasi Lengkap `soal3b.sh`
+### # Implementasi Lengkap `soal3b.sh`
 ```bash
 #!/bin/bash
 
+PATH_TO="/home/ariestaheart/Sisop/soal-shift-sisop-modul-1-C04-2021/soal3"
 current_date=`date +'%d-%m-%Y'`
 
 echo "[!] Current date : $current_date"
 
-if [[ ! -d "$current_date" ]]; then
-    # File not exist
-    echo "[!] Making directory $current_date"
-    mkdir "$current_date"
-else
-    # File arleady exist
-    echo "[!] Directory $current_date already exist"
-fi
+mkdir "${PATH_TO}/$current_date"
 
 download_neko(){
     neko_host="https://loremflickr.com"
@@ -308,16 +335,16 @@ download_neko(){
     neko_filename=`echo "$neko_endpoint" | awk -F '/' '{print $4}'`
 
     echo "Download : $neko_to_download"
-    wget $neko_to_download -P "$current_date"
+    wget $neko_to_download -P "${PATH_TO}/$current_date"
 
-    echo "Download : $neko_to_download">>"${current_date}/Foto.log"
+    echo "Download : $neko_to_download">>"${PATH_TO}/${current_date}/Foto.log"
 
-    if [[ $(cat "${current_date}/Foto.log" | grep -c "${neko_to_download}") -gt 1 ]]; then
+    if [[ $(cat "${PATH_TO}/${current_date}/Foto.log" | grep -c "${neko_to_download}") -gt 1 ]]; then
         # Kalau kucingnya udah kedownload, maka hapus lagi kucingnya
-        rm "$current_date/$neko_filename"
+        rm "${PATH_TO}/$current_date/$neko_filename"
     else
         # Kalau kucingnya belum kedownload, maka tinggal ganti nama aja
-        neko_number=`ls $current_date | grep -c "Koleksi"`
+        neko_number=`ls "${PATH_TO}/$current_date" | grep -c "Koleksi"`
         neko_number=`echo "$neko_number + 1" | tr -d $'\r' | bc -l`
 
         if [ 1 -eq "$(echo "${neko_number} < 10" | bc)" ]
@@ -328,25 +355,37 @@ download_neko(){
         neko_save_file_name="Koleksi_${neko_number}.jpg"
 
         # echo $neko_save_file_name
-        mv "$current_date/$neko_filename" "$current_date/$neko_save_file_name"
+        mv "${PATH_TO}/$current_date/$neko_filename" "${PATH_TO}/$current_date/$neko_save_file_name"
     fi
 }
 
+>"${PATH_TO}/${current_date}/Foto.log"
 for ((num=1; num<=23; num=num+1))
 do
     download_neko
 done
 ```
+### # Hasil soal3b.sh
+Hasil download gambar
+![Hasil Soal3a](assets/img/soal3b_isifolder.png)
 
-### #Crontab `cron3b.tab`
+Isi Foto.log
+![Hasil Soal3a](assets/img/soal3b_fotolog.png)
+
+### # Crontab `cron3b.tab`
 ```bash
-0 20 1-31/7 * * ~/soal-shift-sisop-modul-1-C04-2021/soal3b.sh
-0 20 2-31/4 * * ~/soal-shift-sisop-modul-1-C04-2021/soal3b.sh
+0 20 1-31/7,2-31/4  * * bash /home/ariestaheart/Sisop/soal-shift-sisop-modul-1-C04-2021/soal3/soal3b.sh
 ```
-Crontab diatas menjalankan file yang akan dieksekusi pada sehari sekali pada jam 20.00 pada tanggal-tanggal tertentu setiap bulannya. Untuk tanggal 1, tujuh hari sekali misalkan 1, 8, 15,..., serta dari tanggal 2, empat hari sekali misalkan 2, 6, 10,.., dimana file yang akan dieksekusi berada pada local user atau untuk kasus diatas berada pada `~/soal-shift-sisop-modul-1-C04-2021/soal3b.sh`.
+Crontab diatas menjalankan file yang akan dieksekusi pada sehari sekali pada jam 20.00 pada tanggal-tanggal tertentu setiap bulannya. Untuk tanggal 1, tujuh hari sekali misalkan 1, 8, 15,..., serta dari tanggal 2, empat hari sekali misalkan 2, 6, 10,.., dimana file yang akan dieksekusi berada pada local user atau untuk kasus diatas berada pada `/home/ariestaheart/Sisop/soal-shift-sisop-modul-1-C04-2021/soal3/soal3b.sh`.
 
-### #C
+### # Hasil Crontab `cron3b.tab`
+Crontab berjalan pada tanggal 15 April 2021 pukul 20.00
+![Crontab berjalan](assets/img/cron3b_running.png)
+
+### # C
+
 Disini juga melanjutkan dari problem #B. Namun yang menjadi permasalahan adalah bagaimana cara mendownload secara bergantian?. Untuk hal tersebut disini kami terlebih dahulu mendefisinikan tanggal hari ini dan tanggal kemarin
+
 ```bash
 current_date=`date +'%d-%m-%Y'`
 yesterday_date=`date -d "yesterday" +'%d-%m-%Y'`
@@ -412,13 +451,19 @@ download_foto(){
 ```
 Untuk implementasi lengkapnya dapat dilihat [di sini](https://github.com/ariestahrt/soal-shift-sisop-modul-1-C04-2021/blob/main/soal3/soal3c.sh)
 
-### #D
+### # Hasil
+Hasil ketika program dijalankan pada tanggal 15 dan 16 April 2021
+![Hasil soal3c.sh](assets/img/soal3c_result.png)
+
+### # D
 Membuat script yang akan memindahkan seluruh folder ke zip yang diberi nama “Koleksi.zip” dan mengunci zip tersebut dengan password berupa tanggal saat ini dengan format "MMDDYYYY" (contoh : “03032003”).
 
 Kode program `soal3d.sh` adalah sebagai berikut:
 ```bash
 #!/bin/bash
 
+PATH_TO="/home/ariestaheart/Sisop/soal-shift-sisop-modul-1-C04-2021/soal3"
+cd PATH_TO
 password=`date +'%m%d%Y'`
 
 for d in */ ; do
@@ -427,6 +472,7 @@ for d in */ ; do
 done
 ```
 Penjelasan:
+Agar script bisa berjalan di crontab maka kita perlu masuk ke dalam directory script berada
 password diperoleh dengan command date sesuai dengan format (MMDDYYY).
 Kemudian kita melakukan looping untuk setiap folder yang ada di directory script bekerja, untuk setiap folder, kita akan mengkompres file tersebut:
 ```bash
@@ -436,16 +482,20 @@ zip -r -P "$password" Koleksi.zip . -i "$d*"
 - Parameter `-P` berarti melakukan enkripsi password
 - Parameter `-i` berarti hanya menyertakan nama-nama folder yang diberikan
 
-### #E
+### # E
 
 - Setiap hari kecuali sabtu dan minggu, dari jam 7 pagi sampai 6 sore, ia memintamu untuk membuat koleksinya ter-zip.
     ```bash
-    0 7-18 * * 1-5 bash ~/soal-shift-sisop-modul-1-C04-2021/soal3d.sh
+    0 7 * * 1-5 bash /home/ariestaheart/Sisop/soal-shift-sisop-modul-1-C04-2021/soal3/soal3d.sh
     ```
-    Crontab diatas menjelaskan bahwa pada jam 07.00 sampai 18.00 dari hari senin sampai jumat untuk menjalankan script untuk membuat koleksi zipnya pada script `soal3d.sh`.
+    Crontab diatas menjelaskan bahwa setiap jam 07.00 dari hari senin sampai jumat untuk menjalankan script untuk membuat koleksi zipnya pada script `soal3d.sh`.
 
 - Selain dari waktu yang disebutkan, ia ingin koleksinya ter-unzip dan tidak ada file zip sama sekali
     ```bash
-    0 0-6,18-23 * * 1-5 password=`date +'%m%d%Y'` && unzip -P $password Koleksi.zip && rm Koleksi.zip
+    0 18 * * 1-5 cd /home/ariestaheart/Sisop/soal-shift-sisop-modul-1-C04-2021/soal3 && password=`date +'%m%d%Y'` && unzip -P $password Koleksi.zip && rm Koleksi.zip
     ```
-    Crontab diatas menjelaskan bahwa pada jam 00.00 sampai 06.00 dan pada jam 18.00 sampai jam 23.00 dari hari senin sampai jumat untuk menjalankan perintah melakukan unzip Koleksi.zip serta menghapus Koleksi.zip.
+    Crontab diatas menjelaskan bahwa setiap jam 18.00 dari hari senin sampai jumat untuk menjalankan perintah untuk masuk ke directory script berada lalu melakukan unzip Koleksi.zip serta menghapus Koleksi.zip.
+
+### # Kendala
+
+Kendala yang ditemui saat mengerjakan script crontab adalah kami tidak melakukan testing terhadap crontab yang dibuat sehingga terjadi permasalahan kesalahan direcotry menjalankan script.

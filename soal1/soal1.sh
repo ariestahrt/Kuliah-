@@ -3,7 +3,8 @@ IFS=$'\n'
 
 echo "Error,Count">error_message.csv
 echo "Username,INFO,ERROR">user_statistic.csv
-# D
+
+# B -- D
 
 for line in $(cat syslog.log | grep "ERROR" | grep -oP "ERROR\s\K.*(?=\s\()" | sort | uniq)
 do
@@ -11,7 +12,7 @@ do
     echo $line,$total
 done | sort -rnk 2 -t','>>error_message.csv
 
-# E
+# C -- E
 for line in $(cat syslog.log | grep -o '(.*)' | tr -d '(' | tr -d ')' | sort | uniq)
 do
     error=$(cat syslog.log | grep "$line" | grep -c "ERROR")
