@@ -1,2 +1,2 @@
-0 7 * * 1-5 bash /home/ariestaheart/Sisop/soal-shift-sisop-modul-1-C04-2021/soal3/soal3d.sh
-0 18 * * 1-5 cd /home/ariestaheart/Sisop/soal-shift-sisop-modul-1-C04-2021/soal3 && password=`date +'%m%d%Y'` && unzip -P $password Koleksi.zip && rm Koleksi.zip
+0 7 * * 1-5  cd /home/ariestaheart/Sisop/soal-shift-sisop-modul-1-C04-2021/soal3/ && bash soal3d.sh
+0 18 * * 1-5 password=`date +'%m%d%Y'` && unzip -P "$password" /home/ariestaheart/Sisop/soal-shift-sisop-modul-1-C04-2021/soal3/Koleksi.zip && rm /home/ariestaheart/Sisop/soal-shift-sisop-modul-1-C04-2021/soal3/Koleksi.zip
