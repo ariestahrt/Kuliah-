@@ -486,16 +486,16 @@ zip -r -P "$password" Koleksi.zip . -i "$d*"
 
 - Setiap hari kecuali sabtu dan minggu, dari jam 7 pagi sampai 6 sore, ia memintamu untuk membuat koleksinya ter-zip.
     ```bash
-    0 7 * * 1-5 bash /home/ariestaheart/Sisop/soal-shift-sisop-modul-1-C04-2021/soal3/soal3d.sh
+    0 7 * * 1-5  cd /home/ariestaheart/Sisop/soal-shift-sisop-modul-1-C04-2021/soal3/ && bash soal3d.sh
     ```
     Crontab diatas menjelaskan bahwa setiap jam 07.00 dari hari senin sampai jumat untuk menjalankan script untuk membuat koleksi zipnya pada script `soal3d.sh`.
 
 - Selain dari waktu yang disebutkan, ia ingin koleksinya ter-unzip dan tidak ada file zip sama sekali
     ```bash
-    0 18 * * 1-5 cd /home/ariestaheart/Sisop/soal-shift-sisop-modul-1-C04-2021/soal3 && password=`date +'%m%d%Y'` && unzip -P $password Koleksi.zip && rm Koleksi.zip
+    0 18 * * 1-5 password=`date +'%m%d%Y'` && unzip -P "$password" /home/ariestaheart/Sisop/soal-shift-sisop-modul-1-C04-2021/soal3/Koleksi.zip && rm /home/ariestaheart/Sisop/soal-shift-sisop-modul-1-C04-2021/soal3/Koleksi.zip
     ```
     Crontab diatas menjelaskan bahwa setiap jam 18.00 dari hari senin sampai jumat untuk menjalankan perintah untuk masuk ke directory script berada lalu melakukan unzip Koleksi.zip serta menghapus Koleksi.zip.
 
 ### # Kendala
 
-Kendala yang ditemui saat mengerjakan script crontab adalah kami tidak melakukan testing terhadap crontab yang dibuat sehingga terjadi permasalahan kesalahan direcotry menjalankan script.
+Kendala yang ditemui saat mengerjakan script crontab adalah kami tidak melakukan testing terhadap crontab yang dibuat sehingga terjadi permasalahan kesalahan direcotry menjalankan script. Lalu kendala berikutnya adalah mengganti waktu di VM terjadi konflik dengan waktu di Windows
